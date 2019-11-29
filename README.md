@@ -5,7 +5,7 @@
 2. `pip install -r requirements.txt`
 3. `python manage.py makemigrations core`
 4. `python manage.py migrate`
-5. It should be ready now! Run `python manage.py runserver`
+5. It should be ready now! Run `python manage.py runserver` and go to localhost:8080
 
 
 ### Routes
