@@ -1,0 +1,60 @@
+<html>  
+  <head>
+    <title>Twitter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">    
+    <style>
+        #twitter_splash {
+          background-color: #00aced;
+          color: white;
+        }
+        #twitter_splash, h1 {
+          font-size: 100px;
+        }
+        html, body {
+          height: 100%;
+        }
+        .min-100 {
+          min-height: 100%;
+        }
+        #login {
+          background-color: white;
+        }
+    </style>
+  </head>
+  <body>
+      <div class="container-fluid min-100 d-flex flex-column">  
+        <div class="row flex-grow-1 bg-info">
+          <div class="col flex-grow-1" id="twitter_splash"> 
+              <div style="text-align: center; margin-top: 30%;">
+                <h1>Twitter</h1>
+                <p style="font-size: 15px;">cheep. chirp. <i><b>tweet.</b></i></p> 
+              </div>
+          </div>
+          <div class="col flex-grow-1" id="login">
+              <div style="text-align: center; margin-top: 30%;">
+                  <div>
+                  <h4><b>Welcome to Twitter!</b></h4> 
+                  <form method="POST" action="/login">
+                    {% csrf_token %}
+                    <div class="form-group" style="margin: 5px 25%">
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group" style="margin: 5px 25%">
+                      <input type="password" class="form-control" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                  </form>
+                  </div>
+
+                  <br>
+                  <div>
+                    <p style="margin: 5px">Don't already have an account? <b>Join Twitter today.</b></p>
+                    <a href="/signup"><button class="btn btn-outline-primary">Sign up</button></a>
+                  </div>
+                  
+              </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>

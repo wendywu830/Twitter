@@ -1,0 +1,41 @@
+{% load static %}
+<html>  
+  <head>
+    <title>Twitter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">    
+    <link rel="stylesheet" href="{% static 'css/heart.css' %}">
+    <style>
+      .twitter-blue {
+        color: #00aced;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid d-flex flex-column">
+      <div style="margin: 3% 9%">
+        <h2><b style="color: #1dcaff">#{{ hashtag.content }}</b></h2>
+        All tweets:
+        {% for tweet, likes in tweet_tuples %}
+        <div class="card mt-2">
+            <div class="card-body">
+              <a href="/profile/{{ tweet.author.id }}" class="twitter-blue">@{{ tweet.author }}</a> · <span class="text-secondary">{{ tweet.date }}</span>
+              <div style="margin: 1%;">
+                {{ tweet.content }}
+              </div>
+              <div style="margin-top: 1%;">
+                  <small class="text-secondary"><form method="POST" action="/like">
+                    {% csrf_token %}
+                    <button type="submit" class="heart" name="like_id" value="{{ tweet.id }}"></button>
+                    {{ likes }} likes
+                    {% if tweet.author == user %}
+                    |<a href="/delete?id={{tweet.id}}" class="twitter-blue"> Delete</a>
+                    {% endif %}
+                  </form></small>
+              </div>
+            </div>   
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

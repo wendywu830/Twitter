@@ -1,0 +1,73 @@
+{% load static %}
+<html>  
+  <head>
+    <title>Twitter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">    
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/heart.css' %}">
+    <style>
+      .list-group-item {
+        background-color: #f5f8fa;
+      }
+      .twitter-blue {
+        color: #00aced;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid d-flex flex-column">
+      <div style="margin: 2% 9%">
+        <div class="row">
+          <div class="col">
+            <!--create tweet-->
+            <h1><b>Home</b></h1>
+            <form method="POST" action="/add_tweet">
+                {% csrf_token %}
+                <div class="form-group">
+                  <textarea class="form-control" type= "text" name="content" placeholder="What's on your mind?" rows="2"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Tweet</button>
+            </form>
+          </div>
+          <div class="col">
+            <div style="float: right">
+                <a href="/logout"><button class="btn btn-light btn-sm">Log out</button></a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            {% for tweet, likes in tweet_tuples %}
+            <div class="card mt-2">
+                <div class="card-body">
+                  <a href="/profile/{{ tweet.author.id }}" class="twitter-blue">@{{ tweet.author }}</a> · <span class="text-secondary">{{ tweet.date }}</span>
+                  <div style="margin: 3%;">
+                    {{ tweet.content }}
+                  </div>
+                  <div style="margin-top: 2%;">
+                      <small class="text-secondary"><form method="POST" action="/like">
+                        {% csrf_token %}
+                        <button type="submit" class="heart" name="like_id" value="{{ tweet.id }}"></button>
+                        {{ likes }} likes
+                        {% if tweet.author == user %}
+                        |<a href="/delete?id={{tweet.id}}" class="twitter-blue"> Delete</a>
+                        {% endif %}
+                      </form></small>
+                  </div>
+                </div>   
+            </div>
+            {% endfor %}
+          </div>
+          <div class="col">
+            <div class="list-group rounded mt-2" id="hashtags-table">
+              <li class="list-group-item"><b style="font-size: 27px;">Trends for you</b></li>
+              {% for tag in hashtags %}
+                <a href="/hashtag/{{ tag }}" class="list-group-item list-group-item-action twitter-blue">#{{ tag }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

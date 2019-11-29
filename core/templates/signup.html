@@ -1,0 +1,29 @@
+<html>  
+  <head>
+    <title>Twitter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">    
+    <style>
+      .form-group {
+        margin: 6px 35%;
+      }
+    </style>
+  </head>
+  <body style="background-color: #f5f8fa;">
+    <div style="text-align: center; margin-top: 10%;">
+      <h2>Sign up</h2>
+    <form method="POST" action="/signup">
+      {% csrf_token %}
+      <div class="form-group">
+        <input type="email" class="form-control" name="email" placeholder="Email" >
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="username" placeholder="Username">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+    </div>
+  </body>
+</html>

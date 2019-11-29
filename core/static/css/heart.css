@@ -1,0 +1,15 @@
+.heart {
+  cursor: pointer;
+  height: 20px;
+  width: 50px;
+  background-image: url( 'https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png');
+  background-position: left;
+  background-repeat:no-repeat;
+  background-size:2900%;
+  padding: 0;
+  border: 0px;
+  padding: 5px 0px;
+}
+.heart:hover {
+  background-position:right;
+}
