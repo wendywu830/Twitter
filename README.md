@@ -1,7 +1,7 @@
 # Twitter (CIS 192 HW6)
 
 ### How to Run
-1. `cd twitter`
+1. After cloning/downloading, `cd Twitter`
 2. `pip install -r requirements.txt`
 3. `python manage.py makemigrations core`
 4. `python manage.py migrate`
